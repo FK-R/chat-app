@@ -26,7 +26,6 @@ export async function getPrivateState(meId: string, conversationId: string) {
   ]);
   return {
     otherId,
-    // I can't send if the other user blocked me, unless they whitelisted me.
     blockedMe: !!theirBlock && !theyTrustMe,
     blockedByMe: !!myBlock,
     trustedByMe: !!iTrustThem,
