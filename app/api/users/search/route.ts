@@ -7,7 +7,9 @@ export const dynamic = "force-dynamic";
 export async function GET(req: Request) {
   const me = await currentUserId();
   if (!me) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const q = (new URL(req.url).searchParams.get("email") ?? "").trim().toLowerCase();
+  const q = (new URL(req.url).searchParams.get("email") ?? "")
+    .trim()
+    .toLowerCase();
   if (q.length < 3) return NextResponse.json({ users: [] });
   const users = await prisma.user.findMany({
     where: { email: { contains: q }, id: { not: me } },
