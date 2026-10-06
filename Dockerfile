@@ -1,5 +1,6 @@
-FROM node:20-slim AS base
+FROM node:22-slim AS base
 RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+RUN npm install -g npm@12.2.0
 WORKDIR /app
 
 FROM base AS deps
